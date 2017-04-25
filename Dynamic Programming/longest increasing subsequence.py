@@ -1,4 +1,4 @@
-array = map(int, input().split())
+array = list(map(int, input().split()))
 
 dp = [1]*len(array)
 for i in range(len(dp)):
