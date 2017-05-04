@@ -7,6 +7,7 @@ struct distSort {
     return lhs[1] < rhs[1];
   }
 };
+
 priority_queue<vector<int>, vector< vector<int> >, distSort> node_dist;
 vector<vector<vector<int>>> edges = { { {1,5}, {2,7} }, { {3,8} }, { {3,9} }, { {4,3} }, {} };
 vector<int> node_dist2 = {0, 100000, 100000, 100000, 100000};
