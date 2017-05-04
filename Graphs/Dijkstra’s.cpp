@@ -17,7 +17,6 @@ int main() {
   while(node_dist.size() > 0) {
     vector<int> node = node_dist.top();
     node_dist.pop();
-    
     for(auto edge : edges[node[0]]) {
       if(node_dist2[node[0]]+edge[1] < node_dist2[edge[0]]) {
          node_dist2[edge[0]] = node_dist2[node[0]]+edge[1];
