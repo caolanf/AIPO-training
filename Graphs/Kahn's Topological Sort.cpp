@@ -19,12 +19,10 @@ int main() {
     node_queue.pop_front();
     if(in[node] <= 0) {
       ans += ('0' + node);
-      
       for(auto con_node : out[node]) {
         node_queue.push_front(con_node);
         --in[con_node];
       }
-      
     }
   }
   
