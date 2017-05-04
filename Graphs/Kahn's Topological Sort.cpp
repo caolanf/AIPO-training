@@ -17,6 +17,7 @@ int main() {
   while(node_queue.size() > 0) {
     int node = node_queue.front();
     node_queue.pop_front();
+    if(in[node] <= 0) {
       ans += ('0' + node);
       
       for(auto con_node : out[node]) {
