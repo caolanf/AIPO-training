@@ -2,32 +2,42 @@
 
 using namespace std;
 
-vector<int> numbers = {3,2,-1,6,5,4,-3,3,7,2,3};
-vector<int> binary_tree(numbers.size()+1);
+class FenwichTree {
+	private:
+	int n;
+	vector<int> ft;
+	
+	void update (int val, int ind) {
+		for (; ind<=n+1; ind+=ind&(-ind)){ ft[ind] += val; }
+	}
+	
+	public:
+	FenwichTree (vector<int> A) { 
+		n = (int)A.size();
+		ft.assign(A.size()+1,0);
+		for (int i=0;i<=n;++i){ update (A[i], i+1); }
+		
+		for (int i=0;i<=n;++i){ 
+			cout << ft[i] << endl;
+		}
+	}
+	
+	int rsq(int a) {
+		int sum = 0;
+		for(; a>0; a-=a&(-a)) {
+			sum += ft[a];
+		}
+		return sum;
+	}
+	
+	int rsq(int a, int b){ return rsq(b)-rsq(a); }
+	
+};
 
-int main () {
-  // Creates binary indexed tree
-  for (int i=0;i<numbers.size();++i) {
-    int x=i+1;
-    while (x<binary_tree.size()) {
-      binary_tree[x] += numbers[i];
-      x += x&-x;
-    }
-  }
-  
-  // Finds sum in range 0,5
-  int sum_ind = 5;
-  int sum = 0;
-  while (sum_ind != 0) {
-    sum += binary_tree[sum_ind];
-    sum_ind -= sum_ind&-sum_ind;
-  }
-  
-  // Changes element in tree
-  int x=1;
-  int dif=1;
-  while (x<binary_tree.size()) {
-    binary_tree[x] += dif;
-    x += x&-x;
-  }
+int main ()
+{
+	vector<int> numbers = {0, 1, 0, 1, 2, 3, 2, 1, 1, 0};
+	FenwichTree ft(numbers);
+	cout << ft.rsq(3,6);
+	return 0;
 }
